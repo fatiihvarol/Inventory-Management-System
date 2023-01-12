@@ -1,0 +1,115 @@
+CREATE SCHEMA `inventorymanagementdb` ;
+CREATE TABLE `employees` (
+
+  `EmployeeID` int NOT NULL,
+  `UserType` int NOT NULL,
+  `FirstName` varchar(45) NOT NULL,
+  `LastName` varchar(45) NOT NULL,
+  `UserName` varchar(45) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Password` varchar(45) NOT NULL,
+  `PhoneNumber` varchar(45) NOT NULL,
+  `Address` varchar(100) NOT NULL,
+  `Age` int NOT NULL,
+  `Gender` int NOT NULL,
+  `Position` varchar(45) NOT NULL,
+  `Salary` varchar(45) NOT NULL,
+  PRIMARY KEY (`EmployeeID`),
+  UNIQUE KEY `UserName_UNIQUE` (`UserName`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE TABLE `administrators` (
+  `AdminID` int NOT NULL,
+  `UserType` int NOT NULL,
+  `FirstName` varchar(45) NOT NULL,
+  `LastName` varchar(45) NOT NULL,
+  `UserName` varchar(45) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Password` varchar(45) NOT NULL,
+  `Age` varchar(45) NOT NULL,
+  `Gender` int NOT NULL,
+  `Address` varchar(100) NOT NULL,
+  `PhoneNumber` varchar(11) NOT NULL,
+  PRIMARY KEY (`AdminID`),
+  UNIQUE KEY `UserName_UNIQUE` (`UserName`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`),
+  UNIQUE KEY `PhoneNumber_UNIQUE` (`PhoneNumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE TABLE `branches` (
+  `BranchID` int NOT NULL,
+  `BranchName` varchar(45) NOT NULL,
+  `ProductCapasity` int NOT NULL,
+  `EmployeeCapasity` int NOT NULL,
+  `BranchAddress` varchar(100) NOT NULL,
+  PRIMARY KEY (`BranchID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE TABLE `brands` (
+  `BrandID` int NOT NULL,
+  `BrandName` varchar(45) NOT NULL,
+  `BrandDescription` varchar(45) DEFAULT NULL,
+  `DateAdded` varchar(10) NOT NULL,
+  PRIMARY KEY (`BrandID`),
+  UNIQUE KEY `BrandName_UNIQUE` (`BrandName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE TABLE `categories` (
+  `CategoryID` int NOT NULL,
+  `CategoryName` varchar(45) NOT NULL,
+  `CategoryDescription` varchar(100) DEFAULT NULL,
+  `DateAdded` varchar(10) NOT NULL,
+  PRIMARY KEY (`CategoryID`),
+  UNIQUE KEY `CategoryName_UNIQUE` (`CategoryName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE TABLE `customers` (
+  `CustomerID` int NOT NULL,
+  `FirstName` varchar(45) NOT NULL,
+  `LastName` varchar(45) NOT NULL,
+  `PhoneNumber` varchar(45) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Address` varchar(45) NOT NULL,
+  `UserName` varchar(45) NOT NULL,
+  `Password` varchar(45) NOT NULL,
+  `Age` varchar(45) NOT NULL,
+  `Gender` int NOT NULL,
+  PRIMARY KEY (`CustomerID`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`),
+  UNIQUE KEY `PhoneNumber_UNIQUE` (`PhoneNumber`),
+  UNIQUE KEY `UserName_UNIQUE` (`UserName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE TABLE `orders` (
+  `OrderID` int NOT NULL,
+  `ProductID` int NOT NULL,
+  `CustomerID` int NOT NULL,
+  `OrderNumber` varchar(45) NOT NULL,
+  `OrderQuantity` int NOT NULL,
+  `OrderDate` varchar(10) NOT NULL,
+  PRIMARY KEY (`OrderID`),
+  UNIQUE KEY `OrderNumber_UNIQUE` (`OrderNumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE TABLE `products` (
+  `ProductID` int NOT NULL,
+  `CategoryID` int NOT NULL,
+  `BrandID` int NOT NULL,
+  `ProductName` varchar(45) NOT NULL,
+  `Description` varchar(100) DEFAULT NULL,
+  `DateAdded` varchar(10) NOT NULL,
+  `Price` float NOT NULL,
+  `Tax` float NOT NULL,
+  `Quantity` int NOT NULL,
+  `Warranty` int NOT NULL,
+  `ExpirationDate` varchar(10) NOT NULL,
+  PRIMARY KEY (`ProductID`),
+  UNIQUE KEY `ProductName_UNIQUE` (`ProductName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE TABLE `suppliers` (
+  `SupplierID` int NOT NULL,
+  `FirstName` varchar(45) NOT NULL,
+  `LastName` varchar(45) NOT NULL,
+  `Company` varchar(45) NOT NULL,
+  `CategoryID` int NOT NULL,
+  `PhoneNumber` varchar(45) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Address` varchar(45) NOT NULL,
+  PRIMARY KEY (`SupplierID`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`),
+  UNIQUE KEY `PhoneNumber_UNIQUE` (`PhoneNumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
